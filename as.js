@@ -1,20 +1,19 @@
- 
-    let todos = [
-      { text: "HTML va CSS ni o'rganish", done: true },
-      { text: "JavaScript asoslarini o'rganish", done: false },
-      { text: "API bilan ishlashni o'rganish", done: false },
-      { text: "Loyiha uchun dizayn tayyorlash", done: true }
-    ];
+let todos = [
+  { text: "HTML va CSS ni o'rganish", done: true },
+  { text: "JavaScript asoslarini o'rganish", done: false },
+  { text: "API bilan ishlashni o'rganish", done: false },
+  { text: "Loyiha uchun dizayn tayyorlash", done: true },
+];
 
-    function renderTodos() {
-      const todoList = document.getElementById("todoList");
-      todoList.innerHTML = "";
+function renderTodos() {
+  const todoList = document.getElementById("todoList");
+  todoList.innerHTML = "";
 
-      todos.forEach((todo, index) => {
-        const div = document.createElement("div");
-        div.className = "todo-item";
+  todos.forEach((todo, index) => {
+    const div = document.createElement("div");
+    div.className = "todo-item";
 
-        div.innerHTML = `
+    div.innerHTML = `
           <div class="left">
             <input type="checkbox"
               ${todo.done ? "checked" : ""}
@@ -34,48 +33,44 @@
           </div>
         `;
 
-        todoList.appendChild(div);
-      });
+    todoList.appendChild(div);
+  });
 
-      document.getElementById("count").innerText = todos.length;
-    }
+  document.getElementById("count").innerText = todos.length;
+}
 
-    function addTodo() {
-      const input = document.getElementById("todoInput");
-      const text = input.value.trim();
+function addTodo() {
+  const input = document.getElementById("todoInput");
+  const text = input.value.trim();
 
-      if (text === "") return;
+  if (text === "") return;
 
-      todos.push({
-        text,
-        done: false
-      });
+  todos.push({
+    text,
+    done: false,
+  });
 
-      input.value = "";
-      renderTodos();
-    }
+  input.value = "";
+  renderTodos();
+}
 
-    function deleteTodo(index) {
-      todos.splice(index, 1);
-      renderTodos();
-    }
+function deleteTodo(index) {
+  todos.splice(index, 1);
+  renderTodos();
+}
 
-    function editTodo(index) {
-      const newText = prompt(
-        "Vazifani tahrirlash:",
-        todos[index].text
-      );
+function editTodo(index) {
+  const newText = prompt("Vazifani tahrirlash:", todos[index].text);
 
-      if (newText !== null && newText.trim() !== "") {
-        todos[index].text = newText;
-        renderTodos();
-      }
-    }
-
-    function toggleTodo(index) {
-      todos[index].done = !todos[index].done;
-      renderTodos();
-    }
-
+  if (newText !== null && newText.trim() !== "") {
+    todos[index].text = newText;
     renderTodos();
-  
+  }
+}
+
+function toggleTodo(index) {
+  todos[index].done = !todos[index].done;
+  renderTodos();
+}
+
+renderTodos();
